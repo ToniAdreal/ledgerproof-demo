@@ -15,4 +15,6 @@ class T(unittest.TestCase):
         self.assertIn("'=1", export_csv(it, []))
     def test_export_decision(self):
         out = export_csv(self.r, [decide(self.r[2], "HOLD", "check")]); self.assertIn("HOLD", out)
+    def test_export_empty_cells_stay_empty(self):
+        self.assertNotIn("'", export_csv(self.r, []))
 if __name__ == "__main__": unittest.main()
