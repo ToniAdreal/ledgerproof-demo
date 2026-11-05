@@ -53,7 +53,7 @@ def export_csv(items, decisions):
     for i in items:
         x = d.get(i["id"], {})
         cells = [i["id"], i["vendor"], i["amount"], i["status"], "; ".join(i["flags"]), x.get("decision", ""), x.get("reason", "")]
-        w.writerow(["'" + c if isinstance(c, str) and c[:1] in "=+-@" else c for c in cells])
+        w.writerow(["'" + c if isinstance(c, str) and c and c[0] in "=+-@\t\r" else c for c in cells])
     return buf.getvalue()
 
 SAMPLE = """invoice_id,vendor,amount,date,po
